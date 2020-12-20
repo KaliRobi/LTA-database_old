@@ -1,3 +1,5 @@
+#this script transformed the oroginal csv data collection into sqlite databse
+
 from csv import reader
 import sqlite3
 
@@ -17,10 +19,6 @@ with open("lta.csv") as file:
     for case in cases:
         case[-1].replace(',', '')
         [f"'{item}'" for item in case]
-        #[item.replace(" ", "NA") for item in case]
-        #[print(item, len(item)) for item in case]
-        #print(case)
-        #print(type(case))
         new_items = []
         for item in case:
             if len(item) < 1:
