@@ -17,7 +17,9 @@ And! It is a really good playground for me to learn coding.
 
 ##planned stages: 
 
-1. Input goes to an intermediate dict where the user can see/modify the input before sends it to the database. Test will be performed by the old team 
+1. Input goes to an intermediate dict where the user can see/modify the input before sends it to the database.
+1/a  mograte from sqlite to mysql to have more datatype and have chance for more complex analysis.  
+   The test of this stage is performed by the old research team. 
 
 2. GUI is needed to make it usable for others. In this stage a local database should be created which will make the upload possible via emails. 
 
