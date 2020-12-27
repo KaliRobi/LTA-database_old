@@ -23,13 +23,16 @@ def is_three_wchar(value):
         pass
 
 # to check if there is only there digits or null
-def is_three_dchar(value):
-    value = "dummy123"
-    while not re.match(r"\b\d{1,3}\b|^Null$", value):
-        value = input("please try again. This field takes max three digits or null!\n")
-    else:
-        print("Valid format!")
-        pass
+# def is_three_dchar(value):
+#     value = "dummy123"
+#     while not re.match(r"\b\d{1,3}\b|^Null$", value):
+#         value = input("please try again. This field takes max three digits or null!\n")
+#     else:
+#         print("Valid format!")
+#         pass
+def is_three_dchar(val):
+    while not re.match(r"\b\d{1,3}\b|^Null$", str(val)):
+            val = input("please try again. This field takes max three digits or null!\n")
 
 
 # ro check if there is only one word chars of null
@@ -93,93 +96,87 @@ class Record:
 
 
 
-Volume = input("What is the VOLUME? \n"),  # \d{3} # ISSUE: regardless of validness calls the function fix is needed.
-if re.match(r"\b\d{1,3}\b|^Null$", Volume) == None:
-    is_three_dchar(Volume)
+volume = input("What is the VOLUME? \n"),  # \d{3} 
+is_three_dchar(volume)
+
+
+id = input("what is the ID: \n"),
+name_with_aliases = input("What is the NAME of the captive?\n"),
+sex = input("Sex of the captive?\n")  # \w
+while not re.match(r"\bf\b|\bn\b", sex): #checks if the info is .
+    sex = input("Please enter n for woman or f for man\n")
 else:
     pass
 
-ID = input("what is the ID: \n"),
-Name_with_aliases = input("What is the NAME of the captive?\n"),
-Sex = input("Sex of the captive?\n")  # \w
-while not re.match(r"\bf\b|\bn\b", Sex): #checks if the info is .
-    Sex = input("Please enter n for woman or f for man\n")
-else:
-    pass
+height_cm = input("Height?\n")  # \d{3}
+is_three_dchar(height_cm)
 
-Height_cm = input("Height?\n")  # \d{3}
-if re.match(r"\b\d{1,3}\b|^Null$", Height_cm) == None:
-    is_three_dchar(Height_cm)
-else:
-    pass
 
-Build = input("Build? \n")  # \w{3}
-if re.match(r"\b\D{1,3}\b", Build) == None:
-    is_three_wchar(Build)
+build = input("Build? \n")  # \w{3}
+if re.match(r"\b\D{1,3}\b", build) == None:
+    is_three_wchar(build)
 else:
     pass
 
 
-Dentition = input("Dentition? \n")  # \w
-Special_Peculiarities = input("Any Special Peculiarities? \n")
-Date_of_Birth = input("Date of Birth? \n")
-if re.match((r"\d{4}-\d{2}-\d{2}"), Date_of_Birth) == None:
-    is_date(Date_of_Birth)
+dentition = input("Dentition? \n")  # \w
+special_peculiarities = input("Any Special Peculiarities? \n")
+date_of_birth = input("Date of Birth? \n")
+if re.match((r"\d{4}-\d{2}-\d{2}"), date_of_birth) == None:
+    is_date(date_of_birth)
 else:
     pass
-Place_of_Birth = input("Place of Birth? \n")  
-Place_of_Residence = input("Place of Residence? \n")
-Address = input("Address? \n"),
-Religion = input("Religion? \n")  # \w{3}
-if re.match(r"\b\D{1,3}\b", Religion) == None:
-    is_three_wchar(Religion)
+place_of_birth = input("Place of Birth? \n")  
+place_of_residence = input("Place of Residence? \n")
+address = input("Address? \n"),
+religion = input("Religion? \n")  # \w{3}
+if re.match(r"\b\D{1,3}\b", religion) == None:
+    is_three_wchar(religion)
 else:
     pass
-Childhood_status = input("Childhood status? \n")  # \w
-Marital_Status = input("Marital Status? \n")  # \w{3}
-if re.match(r"\b\D{1,3}\b", Marital_Status) == None:
-    is_three_wchar(Marital_Status)
+childhood_status = input("Childhood status? \n")  # \w
+marital_Status = input("Marital Status? \n")  # \w{3}
+if re.match(r"\b\D{1,3}\b", marital_status) == None:
+    is_three_wchar(marital_status)
 else:
     pass
-Number_of_Children = input("Number of Children? \n")  # \d{3}
-if re.match(r"\b\d{1,3}\b|^Null$", Number_of_Children) == None:
-    is_three_dchar(Number_of_Children)
-else:
-    pass
+number_of_children = input("Number of Children? \n")  # \d{3}
+is_three_dchar(number_of_children)
 
-Occupation = input("Occupation? \n")
+
+occupation = input("Occupation? \n")
 # this should be pulled out from a pool based on occupation
-Occupation_2 = input("Occupation 2? \n")
+occupation_2 = input("Occupation 2? \n")
 # this needs to be pulled out from a pool based on occupation
-Occupation_3 = input("Occupation 3? \n")
-Military_Service = input("Military Service? \n")
-Literacy = input("Literacy? \n")  # \w
-Education = input("Education \n")
-Criminal_History = input("Criminal History? \n")
-Crime_Sentence_Begins = input("Crime Sentence Begins? \n")
-if re.match((r"\{4}-\d{2}-\d{2}"), Crime_Sentence_Begins) == None:
-    is_date(Crime_Sentence_Begins)
+occupation_3 = input("Occupation 3? \n")
+military_service = input("Military Service? \n")
+literacy = input("Literacy? \n")  # \w
+education = input("Education \n")
+criminal_history = input("Criminal History? \n")
+crime_sentence_begins = input("Crime Sentence Begins? \n")
+if re.match((r"\{4}-\d{2}-\d{2}"), crime_sentence_begins) == None:
+    is_date(crime_sentence_begins)
 else:
     pass
-Sentence_Expires = input("Sentence Expires? \n")
-if re.match((r"\d{4}-\d{2}-\d{2}"), Sentence_Expires) == None:
-    is_date(Sentence_Expires)
+sentence_expires = input("Sentence Expires? \n")
+if re.match((r"\d{4}-\d{2}-\d{2}"), sentence_expires) == None:
+    is_date(sentence_expires)
 else:
     pass
-is_date(Sentence_Expires)
-Prison_Term_day = input("Prison Term day? \n")
-Ransome = input("Ransome? \n")
-Associates = input("Associates? \n")
-Degree_of_the_Crime = input("Degree of the Crime? \n")  # \w{3}
-if re.match(r"\b\D{1,3}\b", Degree_of_the_Crime) == None:
-    is_three_wchar(Degree_of_the_Crime)
+is_date(sentence_expires)
+prison_term_day = input("Prison Term day? \n")
+ransome = input("Ransome? \n")
+associates = input("Associates? \n")
+degree_of_the_crime = input("Degree of the Crime? \n")  # \w{3}
+if re.match(r"\b\D{1,3}\b", degree_of_the_crime) == None:
+    is_three_wchar(degree_of_the_crime)
 else:
     pass
-Degree_of_the_Punishment = input("Degree of the Punishment? \n")  # \w{3}
-if re.match(r"\b\D{1,3}\b", Degree_of_the_Crime) == None:
-    is_three_wchar(Degree_of_the_Crime)
+degree_of_the_punishment = input("Degree of the Punishment? \n")  # \w{3}
+if re.match(r"\b\D{1,3}\b", degree_of_the_crime) == None:
+    is_three_wchar(degree_of_the_crime)
 else:
     pass
-Notes_Arrest_Site = input("Degree of the Punishment? \n")
+notes_arrest_site = input("Degree of the Punishment? \n")
 # create the new Record
 new_record = Record(Volume, ID, Name_with_aliases, Sex, Height_cm, Build, Dentition, Special_Peculiarities, Date_of_Birth, Place_of_Birth, Place_of_Residence, Address, Religion, Childhood_status, Marital_Status, Number_of_Children, Occupation, Occupation_2, Occupation_3, Military_Service, Literacy,  Education, Criminal_History,  Crime_Sentence_Begins, Sentence_Expires, Prison_Term_day, Ransome, Associates, Degree_of_the_Crime, Degree_of_the_Punishment, Notes_Arrest_Site.
