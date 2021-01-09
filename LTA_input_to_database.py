@@ -46,45 +46,47 @@ def is_religion(val):
 def is_three_dchar(val):
     while not re.match(r"\b\d{1,3}\b|^Null$", str(val)):
             val = input("please try again. This field takes max three digits or null!\n")
- #Recod calss for each case  
+    
 
+
+
+#class for the records
 class Record:
-    def __init__(self, volume, id, name_with_aliases, sex, height_cm, build, dentition, special_peculiarities, date_of_birth, place_of_birth, place_of_residence, address, religion, childhood_status, marital_status, number_of_children, occupation, occupation_2, occupation_3, military_service, literacy,  education, criminal_history, crime, crime_sentence_begins, sentence_expires, prison_term_day, ransome, associates, degree_of_the_crime, degree_of_the_punishment, notes,arrest_site ):
-        self.volume = volume , 
-        self.id = id,
-        self.name_with_aliases = name_with_aliases, 
-        self.sex = sex, 
-        self.height_cm  =  height_cm, 
-        self.build  = build, 
-        self.dentition = dentition, 
-        self.special_peculiarities = special_peculiarities,
-        self.date_of_birth = date_of_birth, 
-        self.place_of_birth = place_of_birth, 
-        self.place_of_residence = place_of_residence, 
-        self.address= address, 
-        self.religion = religion, 
-        self.childhood_status = childhood_status, 
-        self.marital_status = marital_status, 
-        self.number_of_children = marital_status, 
-        self.occupation  = occupation, 
-        self.occupation_2 = occupation_2, 
-        self.occupation_3 = occupation_3, 
-        self.military_service = military_service, 
-        self.literacy = literacy,  
-        self.education = education, 
-        self.criminal_history = criminal_history,  
-        self.crime = crime,
-        self.crime_sentence_begins = crime_sentence_begins, 
-        self.sentence_expires = sentence_expires, 
-        self.prison_term_day = prison_term_day, 
-        self.ransome =  ransome, 
-        self.associates = associates, 
-        self.degree_of_the_crime = degree_of_the_crime, 
-        self.degree_of_the_punishment = degree_of_the_punishment, 
+    def __init__(self, volume, id, name_with_aliases, sex, height_cm, build, dentition, special_peculiarities, date_of_birth, place_of_birth, place_of_residence, residence, religion, childhood_status, marital_status, number_of_children, occupation, occupation_2, occupation_3, military_service, literacy,  education, criminal_history, crime, crime_sentence_begins, sentence_expires, prison_term_day, ransome, associates, degree_of_the_crime, degree_of_the_punishment, notes,arrest_site ):
+        self.volume = volume  
+        self.id = id
+        self.name_with_aliases = name_with_aliases 
+        self.sex = sex 
+        self.height_cm  =  height_cm 
+        self.build  = build 
+        self.dentition = dentition 
+        self.special_peculiarities = special_peculiarities
+        self.date_of_birth = date_of_birth 
+        self.place_of_birth = place_of_birth 
+        self.place_of_residence = place_of_residence 
+        self.residence= residence 
+        self.religion = religion 
+        self.childhood_status = childhood_status 
+        self.marital_status = marital_status 
+        self.number_of_children = number_of_children 
+        self.occupation  = occupation 
+        self.occupation_2 = occupation_2 
+        self.occupation_3 = occupation_3 
+        self.military_service = military_service 
+        self.literacy = literacy  
+        self.education = education 
+        self.criminal_history = criminal_history  
+        self.crime = crime
+        self.crime_sentence_begins = crime_sentence_begins 
+        self.sentence_expires = sentence_expires
+        self.prison_term_day = prison_term_day
+        self.ransome =  ransome
+        self.associates = associates 
+        self.degree_of_the_crime = degree_of_the_crime 
+        self.degree_of_the_punishment = degree_of_the_punishment 
         self.arrest_site = arrest_site
         self.notes = notes
-    
-    
+        
     def pass_data(self):
         pass
 
@@ -95,8 +97,10 @@ class Record:
     def verify_data(self):
         pass
 
+
 volume = input("What is the VOLUME? \n")  
 is_three_dchar(volume)
+
 
 id = input("what is the ID: \n")
 is_id(id)
@@ -121,20 +125,26 @@ special_peculiarities = input("Any Special Peculiarities? \n")
 date_of_birth = input("Date of Birth? \n")
 is_date(date_of_birth)
 
+
 place_of_birth = input("Place of Birth? \n")  
 # here only word character should be allowed 
 
 place_of_residence = input("Place of Residence? \n")
 # here only word character should be allowed 
 
-address = input("Address? \n"),
+
+
+residence = input("Address? \n")
 #plain text because the formating is also diverse
+
 
 religion = input("Religion? \n")  
 is_religion(religion)
 
+
 childhood_status = input("Childhood status? \n")  # \w
 is_childhood(childhood_status)
+
 
 marital_status = input("Marital Status? \n")  
 is_three_wchar(marital_status)
@@ -142,7 +152,9 @@ is_three_wchar(marital_status)
 number_of_children = input("Number of Children? \n")  
 is_three_dchar(number_of_children)
 
+
 occupation = input("Occupation? \n")
+
 
 occupation_2 = input("Occupation 2? \n")
 # this needs to be pulled out from a pool based on occupation
@@ -150,10 +162,13 @@ occupation_2 = input("Occupation 2? \n")
 occupation_3 = input("Occupation 3? \n")
 # this should be pulled out from a pool based on occupation
 
+
 military_service = input("Military Service? \n")
+
 
 literacy = input("Literacy? \n")  # \w
 is_literacy(literacy)
+
 
 education = input("Education \n")
 # not specified
@@ -161,6 +176,7 @@ education = input("Education \n")
 criminal_history = input("Criminal History? \n")
 
 crime= input("committed crime? \n")
+
 
 crime_sentence_begins = input("Crime Sentence Begins? \n")
 is_date(crime_sentence_begins)
@@ -183,70 +199,84 @@ is_three_wchar(degree_of_the_crime)
 
 notes = input("any notes - 150 - char? \n")
 
-arrest_site = input("Degree of the Punishment? \n")
+arrest_site = input("The location where the prisoner got arrested: \n")
 # create the new Record
-new_record = Record(volume, id, name_with_aliases, sex, height_cm, build, dentition, special_peculiarities, date_of_birth, place_of_birth, place_of_residence, address, religion, childhood_status, marital_status, number_of_children, occupation, occupation_2, occupation_3, military_service, literacy,  education, criminal_history, crime, crime_sentence_begins, sentence_expires, prison_term_day, ransome, associates, degree_of_the_crime, degree_of_the_punishment, notes, arrest_site)
+new_record = Record(volume, id, name_with_aliases, sex, height_cm, build, dentition, special_peculiarities, date_of_birth, place_of_birth, place_of_residence, residence, religion, childhood_status, marital_status, number_of_children, occupation, occupation_2, occupation_3, military_service, literacy,  education, criminal_history, crime, crime_sentence_begins, sentence_expires, prison_term_day, ransome, associates, degree_of_the_crime, degree_of_the_punishment, notes, arrest_site)
 
-"""intermediate state of the data 
-will creat temporary json file where we can correct error. After the last input is set of a record, it will gives an option to type/error correction
-shows a teble where the fields  will be associated with the json keys so user can easily modify them 
-"""
+#creates a visualised json file where we can correct error. the table filds  will be associated with the keys so user can easily modify them 
+
 #postgresql
-#creating table and isnterting the the recod tab
+# connecting to the databse and verifing the existence of the databes, if does not exists it creates it
+def database():
+    print('Connecting... ')
+    try:
+        conn = psycopg2.connect(
+        dbname = "lta_test",
+        user = "username",
+        host = "localhost",
+        password = "password"
+        )
+        c = conn.cursor()
+        print('Making sure the table is there...')
+        c.execute("""CREATE TABLE IF NOT EXISTS test_lta_main (
+            volume INTEGER NOT NULL,
+            id VARCHAR(15) NOT NULL, 
+            name_with_aliases TEXT,
+            sex VARCHAR(1), 
+            height_cm INTEGER, 
+            build VARCHAR(3), 
+            dentition VARCHAR(1), 
+            special_peculiarities TEXT, 
+            date_of_birth DATE, 
+            place_of_birth VARCHAR(50), 
+            place_of_residence VARCHAR(50), 
+            residence VARCHAR(50), 
+            religion VARCHAR(2), 
+            childhood_status VARCHAR(2), 
+            marital_status VARCHAR(50), 
+            number_of_children INTEGER, 
+            occupation VARCHAR(50), 
+            occupation_2 VARCHAR(50), 
+            occupation_3 VARCHAR(50), 
+            military_service VARCHAR(50), 
+            literacy VARCHAR(50),  
+            education VARCHAR(50), 
+            criminal_history VARCHAR(50), 
+            crime VARCHAR(50), 
+            crime_sentence_begins DATE, 
+            sentence_expires DATE, 
+            prison_term_day INTEGER, 
+            ransome INTEGER, 
+            associates VARCHAR(50), 
+            degree_of_the_crime VARCHAR(50), 
+            degree_of_the_punishment VARCHAR(50), 
+            notes VARCHAR(150),
+            arrest_site VARCHAR(50) 
+        );""")
+        print('Table is ready.')
+        c.close()
+        conn.commit()
+    except:
+        raise EnvironmentError(" Connection has failed ")
+#when the table is there we can reconnect when ever a new record gets pushed to the database
 
+def insert_into(val):
+    try:
+        conn = psycopg2.connect(
+            dbname = "lta_test",
+            user = "ltauser2",
+            host = "localhost",
+            password = "Terve1990+"
+            )
+        c = conn.cursor()
+        row = (f"INSERT INTO test_lta_main VALUES('{val.volume}', '{val.id}', '{val.name_with_aliases}', '{val.sex}', '{val.height_cm}', '{val.build}',  '{val.dentition}',  '{val.special_peculiarities}', '{val.date_of_birth}', '{val.place_of_birth}', '{val.place_of_residence}', '{val.residence}', '{val.religion}',  '{val.childhood_status}',  '{val.marital_status}', '{val.number_of_children}', '{val.occupation}', '{val.occupation_2}', '{val.occupation_3}', '{val.military_service}', '{val.literacy}',  '{val.education}', '{val.criminal_history}', '{val.crime}', '{val.crime_sentence_begins}' , '{val.sentence_expires}', '{val.prison_term_day}', '{val.ransome}', '{val.associates}', '{val.degree_of_the_crime}', '{val.degree_of_the_punishment}', '{val.notes}','{val.arrest_site}');")
+        print(row)
+        c.execute(row)
+        print('row is insterted into the databse')
+        c.close()
+        conn.commit()
+    except:
+        raise EnvironmentError('This record was not inserted to the database...')
 
-conn = psycopg2.connect(
-dbname = "lta_test",
-user = "ltauser2",
-host = "localhost",
-password = "password"
-)
-c = conn.cursor()
-#table creation fileds are following the restrictions of the  input functions where needed. 
-
-c.execute("CREATE TABLE IF NOT EXISTS lta_main(
-    volume INTEGER NOT NULL,
-    id INTEGER NOT NULL, 
-    name_with_aliases TEXT,
-    sex VARCHAR(1), 
-    height_cm INTEGER, 
-    build VARCHAR(3), 
-    dentition VARCHAR(1), 
-    special_peculiarities TEXT, 
-    date_of_birth DATE, 
-    place_of_birth VARCHAR(50), 
-    place_of_residence VARCHAR(50), 
-    address VARCHAR(50), 
-    religion VARCHAR(2), 
-    childhood_status VARCHAR(2), 
-    marital_status VARCHAR(50), 
-    number_of_children INTEGER, 
-    occupation VARCHAR(50), 
-    occupation_2 VARCHAR(50), 
-    occupation_3 VARCHAR(50), 
-    military_service VARCHAR(50), 
-    literacy VARCHAR(50),  
-    education VARCHAR(50), 
-    criminal_history VARCHAR(50), 
-    crime VARCHAR(50), 
-    crime_sentence_Begins DATE, 
-    sentence_expires DATE, 
-    prison_term_day INTEGER, 
-    ransome_pengő_fillér INTEGER, 
-    associates VARCHAR(50), 
-    degree_of_the_crime VARCHAR(50), 
-    degree_of_the_punishment VARCHAR(50), 
-    notes VARCHAR(150),
-    arrest_site VARCHAR(50) 
-);")
-
-
-data = (
-    """
-    Insert into test_table("the row")
-    """
-)
-
-c.execute(data)
-c.close()
-conn.commit()
+database()
+insert_into(new_record)
