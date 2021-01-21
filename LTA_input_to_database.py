@@ -22,12 +22,12 @@ def is_three_wchar(value):
 
 def is_sex(val):
     while not re.match((r"\b([f]|[n])\b|^Null$"), val):
-        val = input("please enter n or f \n")
+        val = input("Please enter n or f \n")
 
 
 def is_dentition(val):
     while not re.match((r"\b([é]|[h])\b|^Null$"), val):
-        val = input("please enter é or h \n")
+        val = input("Please enter é or h \n")
 
 
 def is_childhood(val):
@@ -39,69 +39,69 @@ def is_childhood(val):
 def is_id(val):
     while not re.match((r"\b\d{4}-\d{0,8}\b|^Null$"), val):
         val = input(
-            "year and serial number on the left upper corner of the record \n")
+            "Year and serial number on the left upper corner of the record \n")
 
 
 def is_literacy(val):
     while not re.match((r"\b([io]|[nt])\b|^Null$"), val):
-        val = input("This filed accepts  io, nt or Null  \n")
+        val = input("This filed accepts  io, nt or Null  \n")  # bug, takes the value, the function still alerts and moves on only with Null
 
 
 def is_ransome(val):
     while not re.match((r"\d{0,8}\b|^Null$"), val):
-        val = input("the summ of the ransome, takes 0-8 digits \n")
+        val = input("The summ of the ransome, takes 0-8 digits \n")
 
 
 def is_religion(val):
     while not re.match(
             (r"\b(gk)\b|\be\b|\bb\b|\bi\b|\b(lu)\b|\br\b|\b(rk)\b|\bu\b|\b(fn)\b|^Null$"), val):
         val = input(
-            "incorrect input, if you are not sure what are the keys for each realigion, please check the documentation \n")
+            "Incorrect input, if you are not sure what are the keys for each religion, please check the documentation \n")
 
 
 def is_three_dchar(val):
     while not re.match(r"\b\d{1,3}\b|^Null$", str(val)):
         val = input(
-            "please try again. This field takes max three digits or null!\n")
+            "Please try again. This field takes max three digits or Nll!\n")
 
 
 # class for the records
 class Record:
     def __init__(self, volume, id, name_with_aliases, sex, height_cm, build, dentition, special_peculiarities, date_of_birth, place_of_birth, place_of_residence, residence, religion, childhood_status, marital_status, number_of_children, occupation,
                  occupation_2, occupation_3, military_service, literacy, education, criminal_history, crime, sentence_begins, sentence_expires, prison_term_day, ransome, associates, degree_of_the_crime, degree_of_the_punishment, notes, arrest_site):
-        self.volume = volume
-        self.id = id
-        self.name_with_aliases = name_with_aliases
-        self.sex = sex
-        self.height_cm = height_cm
-        self.build = build
-        self.dentition = dentition
-        self.special_peculiarities = special_peculiarities
-        self.date_of_birth = date_of_birth
-        self.place_of_birth = place_of_birth
-        self.place_of_residence = place_of_residence
-        self.residence = residence
-        self.religion = religion
-        self.childhood_status = childhood_status
-        self.marital_status = marital_status
-        self.number_of_children = number_of_children
-        self.occupation = occupation
-        self.occupation_2 = occupation_2
-        self.occupation_3 = occupation_3
-        self.military_service = military_service
-        self.literacy = literacy
-        self.education = education
-        self.criminal_history = criminal_history
-        self.crime = crime
-        self.sentence_begins = sentence_begins
-        self.sentence_expires = sentence_expires
-        self.prison_term_day = prison_term_day
-        self.ransome = ransome
-        self.associates = associates
-        self.degree_of_the_crime = degree_of_the_crime
-        self.degree_of_the_punishment = degree_of_the_punishment
-        self.arrest_site = arrest_site
-        self.notes = notes
+        self._volume = volume
+        self._id = id
+        self._name_with_aliases = name_with_aliases
+        self._sex = sex
+        self._height_cm = height_cm
+        self._build = build
+        self._dentition = dentition
+        self._special_peculiarities = special_peculiarities
+        self._date_of_birth = date_of_birth
+        self._place_of_birth = place_of_birth
+        self._place_of_residence = place_of_residence
+        self._residence = residence
+        self._religion = religion
+        self._childhood_status = childhood_status
+        self._marital_status = marital_status
+        self._number_of_children = number_of_children
+        self._occupation = occupation
+        self._occupation_2 = occupation_2
+        self._occupation_3 = occupation_3
+        self._military_service = military_service
+        self._literacy = literacy
+        self._education = education
+        self._criminal_history = criminal_history
+        self._crime = crime
+        self._sentence_begins = sentence_begins
+        self._sentence_expires = sentence_expires
+        self._prison_term_day = prison_term_day
+        self._ransome = ransome
+        self._associates = associates
+        self._degree_of_the_crime = degree_of_the_crime
+        self._degree_of_the_punishment = degree_of_the_punishment
+        self._arrest_site = arrest_site
+        self._notes = notes
     
        #setter getter properties for the modificatiot of the record (in case of error entry )
     @property
@@ -175,6 +175,14 @@ class Record:
     @date_of_birth.setter
     def set_date_of_birth (self, date_of_birth):
         self._date_of_birth = date_of_birth
+
+    @property
+    def place_of_birth (self):
+        return self._place_of_birth
+
+    @date_of_birth.setter
+    def set_place_of_birth (self, place_of_birth):
+        self._place_of_birth = place_of_birth
 
     @property
     def place_of_residence (self):
@@ -587,9 +595,9 @@ def insert_into(val):
     try:
         conn = psycopg2.connect(
             dbname="lta_test",
-            user="ltauser2",
+            user="user",
             host="localhost",
-            password="Terve1990+"
+            password="passsword"
         )
         c = conn.cursor()
         row = (f"INSERT INTO sec_lta_main VALUES('{val.volume}', '{val.id}', '{val.name_with_aliases}', '{val.sex}', '{val.height_cm}', '{val.build}',  '{val.dentition}',  '{val.special_peculiarities}', '{val.date_of_birth}', '{val.place_of_birth}', '{val.place_of_residence}', '{val.residence}', '{val.religion}',  '{val.childhood_status}',  '{val.marital_status}', '{val.number_of_children}', '{val.occupation}', '{val.occupation_2}', '{val.occupation_3}', '{val.military_service}', '{val.literacy}',  '{val.education}', '{val.criminal_history}', '{val.crime}', '{val.sentence_begins}' , '{val.sentence_expires}', '{val.prison_term_day}', '{val.ransome}', '{val.associates}', '{val.degree_of_the_crime}', '{val.degree_of_the_punishment}', '{val.notes}','{val.arrest_site}');")
@@ -602,9 +610,6 @@ def insert_into(val):
         raise EnvironmentError(
             'This record was not inserted to the database...')
 
-
-database()
-insert_into(new_record)
 
 
 #if not correct, here can reassign entering the fileld name
@@ -661,14 +666,14 @@ if new_record.dentition != check_hash['dentition']:
 if new_record.special_peculiarities != check_hash['special_peculiarities']:
     new_record.set_special_peculiarities= check_hash['special_peculiarities']
 
-if new_record.date_of_birt!= check_hash['date_of_birt']:
-    new_record.date_of_birt = check_hash['date_of_birt']
+if new_record.date_of_birth!= check_hash['date_of_birth']:
+    new_record.set_date_of_birth = check_hash['date_of_birth']
 
 if new_record.place_of_birth!= check_hash['place_of_birth']:
     new_record.set_place_of_birth = check_hash['place_of_birth']
 
-if new_record.place_of_residen != check_hash['place_of_residen']:
-    new_record.set_place_of_residen = check_hash['place_of_residen']
+if new_record.place_of_residence != check_hash['place_of_residence']:
+    new_record.set_place_of_residence = check_hash['place_of_residence']
 
 if new_record.residence != check_hash['residence']:
     new_record.set_residence= check_hash['residence']
@@ -677,7 +682,7 @@ if new_record.religion != check_hash['religion']:
     new_record.set_religion= check_hash['religion']
 
 if new_record.childhood_status!= check_hash['childhood_status']:
-    new_record.childhood_status = check_hash['childhood_status']
+    new_record.set_childhood_status = check_hash['childhood_status']
 
 if new_record.marital_status!= check_hash['marital_status']:
     new_record.set_marital_status = check_hash['marital_status']
@@ -688,21 +693,11 @@ if new_record.number_of_children!= check_hash['number_of_children']:
 if new_record.occupation != check_hash['occupation']:
     new_record.set_occupation = check_hash['occupation']
 
-if new_record.occupation_3 != check_hash['occupation_3']:
-    new_record.set_occupation_3= check_hash['occupation_3']
+if new_record.occupation_2 != check_hash['occupation_2']:
+    new_record.set_occupation_2= check_hash['occupation_2']
 
 if new_record.occupation_3 != check_hash['occupation_3']:
     new_record.set_occupation_3= check_hash['occupation_3']
-
-if new_record.childhood_status!= check_hash['childhood_status']:
-    new_record.childhood_status = check_hash['childhood_status']
-
-if new_record.marital_status!= check_hash['marital_status']:
-    new_record.set_marital_status = check_hash['marital_status']
-
-if new_record.number_of_children!= check_hash['number_of_children']:
-    new_record.set_number_of_children = check_hash['number_of_children']
-
 
 if new_record.military_service != check_hash['military_service']:
     new_record.set_military_service= check_hash['military_service']
@@ -712,7 +707,7 @@ if new_record.literacy != check_hash['literacy']:
 
 
 if new_record.education!= check_hash['education']:
-    new_record.education = check_hash['education']
+    new_record.set_education = check_hash['education']
 
 if new_record.criminal_history!= check_hash['criminal_history']:
     new_record.set_criminal_history = check_hash['criminal_history']
@@ -723,13 +718,13 @@ if new_record.crime!= check_hash['crime']:
 if new_record.sentence_begins != check_hash['sentence_begins']:
     new_record.set_sentence_begins= check_hash['sentence_begins']
 
-if new_record.sentence_expiresy != check_hash['sentence_expires']:
+if new_record.sentence_expires != check_hash['sentence_expires']:
     new_record.set_sentence_expires= check_hash['sentence_expires']
 
 if new_record.prison_term_day!= check_hash['prison_term_day']:
-    new_record.prison_term_day = check_hash['prison_term_day']
+    new_record.set_prison_term_day = check_hash['prison_term_day']
 
-if new_record.criminal_ransome!= check_hash['ransome']:
+if new_record.ransome!= check_hash['ransome']:
     new_record.set_ransome = check_hash['ransome']
 
 if new_record.associates!= check_hash['associates']:
@@ -739,7 +734,7 @@ if new_record.degree_of_the_crime != check_hash['degree_of_the_crime']:
     new_record.set_degree_of_the_crime= check_hash['degree_of_the_crime']
 
 if new_record.degree_of_the_punishment!= check_hash['degree_of_the_punishment']:
-    new_record.degree_of_the_punishment = check_hash['degree_of_the_punishment']
+    new_record.set_degree_of_the_punishment = check_hash['degree_of_the_punishment']
 
 if new_record.arrest_site!= check_hash['arrest_site']:
     new_record.set_arrest_site = check_hash['arrest_site']
@@ -748,3 +743,6 @@ if new_record.notes!= check_hash['notes']:
     new_record.set_notes = check_hash['notes']
 
 #at this point the data in the record should be correct 
+
+database()
+insert_into(new_record)
