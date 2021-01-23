@@ -1,19 +1,13 @@
 # LTA-database
 
-RD for the Letartoztatottak torteneti adatabazis ( Historical databse of Captive)
-16.12.2020 the data from the oroginal excel sheet was transformed to a sqlite databse.
 
-LTA_input_to_database.py is the main file of the application planned to help build and analyze the database 
 
-The python – sql project is established on the following: 
+DBMS for Historical databse of Captive
+This is an older, but not suprisingly life long, project of a couple of PhD and graduate students in 2015. As it turned out there is a historical resource in the Hungarian Archives which had recorded approx. 750 000 criminal accusations between 1932 and 1943. Each record kept the social-economic background of the accused person.This source is important for many fileds of researches, still, due to the mass of the records, processing takes time and effort. This is one of the reason why i decided to start this project. In short term the plan is to provide  an environment which provides a convenient platform  and country wide available for researchers who are willing to contribute.
 
-This is one of the largest historical databases in Middle-Europe which records such data. 
+Speaking of convenient... the html Ui pages at the moment are the bare minimum what i need for the backend. Memebers of the project 
 
-We are still receiving request from graduate students who are willing to work on the project. 
-
-And! It is a really good playground for me to learn coding. 
-
- 
+ Obviously the project is also for my joy. To create something, enjoy and develope myself in Python, postgresql, frontend and IT infrastructure (AWS) at the same time.
 
 ##stages  between the <# #> stager are done: 
 
