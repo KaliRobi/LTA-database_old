@@ -11,7 +11,7 @@ def create_app(test_config=None):
     # so the folders are relative to this currecnt one.
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        SECRET_KEY= 'J={IAGMn0i3,e9)*v8Stq^',
+        SECRET_KEY= 'szikret kij,
         RECORDS_DATABASE  =  os.path.join(app.instance_path, 'lta_data.pgsql'),
         USERS_DATABASE = os.path.join(app.instance_path, 'lta_users.pgsql')
 
