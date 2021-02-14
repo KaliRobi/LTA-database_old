@@ -20,8 +20,23 @@ Speaking of convenient... the html Ui pages at the moment are the bare minimum w
    b. logon system 
    b. grid styling on the css layer (looking for inspiring form ideas. Visual design is not my strong suit, they tend to say ...)
 
+2.5 CRUD operations are working.
+    WTforms validations are under progress
+    Database(excel) serialization and migration to postgressql is under progress.
+    Some additional features: 
+    operation recording table
+    non-data based entry id and timestamp columns are needed in the main db.
+    When these are ready the code app is good to go so stage 3 comes to be
+
 3. the third stage will happen when the database and the front will be migrated to the AWS 
    a. AWS design is 'ready' Although it is tempting to build a decent (ALB-ELB <-> 2(or3) EC2 instance in autoscaling groups <-> RDS on postgres)  infrastructure at the moment EC2 price scaled spot instances and self-managed nginx and postgresql databases are the most possible. 
-   b.Additional features like the visualized data or Gis might bring more visitors and support. So this can be changed over time.
+   
+   
+4. After the deployment there will be a 4 weeks long test period. During this time the team will try to challange the code. The task will be to eliminate bugs and  
+   and find must-have features.
+   This will be the period when the 'whats this all about', 'statistics', 'maps' pages will be populated. In this early period the most convenient way to show    some interesting data is to make the stat site capable of showing some basic but nifty stats of the settlements using pandas and seaborn.
+   
+  
+
 
 
