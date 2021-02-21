@@ -21,7 +21,7 @@ def row_counter():
 def record_counter():
         conn = get_dt_db().getconn()
         cur =  conn.cursor() 
-        data2 = "Select count(username) from test_lta_main;"        
+        data2 = "Select count(username) from lta_main;"        
         cur.execute(data2)
         row_num = cur.fetchone()
         rows = str(row_num[0]).strip('(').rstrip('L)')
@@ -32,7 +32,7 @@ def data_all():
         username = session['current_user']
         conn = get_dt_db().getconn()
         cur =  conn.cursor() 
-        cur.execute("Select TO_CHAR(date_of_birth, 'YYYY-MM-DD') from test_lta_main where username = %s " , (username,))
+        cur.execute("Select TO_CHAR(date_of_birth, 'YYYY-MM-DD') from lta_main where username = %s " , (username,))
         row_num = cur.fetchall()
         strrow = []
         years  = [row[0] for row in row_num]
@@ -42,7 +42,7 @@ def current_user_records():
         username = session['current_user']
         conn = get_dt_db().getconn()
         cur =  conn.cursor() 
-        cur.execute("Select COUNT(username) from test_lta_main where username = %s " , (username,))
+        cur.execute("Select COUNT(username) from lta_main where username = %s " , (username,))
         row_num = cur.fetchone()
         row_num = str(row_num[0]).strip('(').rstrip('L)')
 
@@ -55,7 +55,7 @@ def edit_pull_record():
         username = session['current_user']
         conn = get_dt_db().getconn()
         cur =  conn.cursor() 
-        query = "SELECT  volume, id, name, sex, height, build, dentition, special_peculiarities, TO_CHAR(date_of_birth, 'YYYY-MM-DD'), place_of_birth, place_of_residence, residence, religion, childhood_status, marital_status, number_of_children, occupation, occupation_2, occupation_3, military_service, literacy, education, criminal_history, crime, TO_CHAR(sentence_begins, 'YYYY-MM-DD'), TO_CHAR(sentence_expires, 'YYYY-MM-DD'), prison_term_day, ransome, associates, degree_of_crime, degree_of_punishment, notes, arrest_site from test_lta_main where username = %s  limit 10;"
+        query = "SELECT  volume, id, name, sex, height, build, dentition, special_peculiarities, TO_CHAR(date_of_birth, 'YYYY-MM-DD'), place_of_birth, place_of_residence, residence, religion, childhood_status, marital_status, number_of_children, occupation, occupation_2, occupation_3, military_service, literacy, education, criminal_history, crime, TO_CHAR(sentence_begins, 'YYYY-MM-DD'), TO_CHAR(sentence_expires, 'YYYY-MM-DD'), prison_term_day, ransome, associates, degree_of_crime, degree_of_punishment, notes, arrest_site, record_session from lta_main where username = %s  limit 10;"
         cur.execute(query, (username,))
         row_num = cur.fetchall()
         
@@ -65,10 +65,10 @@ def edit_pull_record():
 
         
 def edit_one_record(val):
-        username = session['current_user']
+        
         conn = get_dt_db().getconn()
         cur =  conn.cursor() 
-        query = "SELECT  volume, id, name, sex, height, build, dentition, special_peculiarities, TO_CHAR(date_of_birth, 'YYYY-MM-DD'), place_of_birth, place_of_residence, residence, religion, childhood_status, marital_status, number_of_children, occupation, occupation_2, occupation_3, military_service, literacy, education, criminal_history, crime, TO_CHAR(sentence_begins, 'YYYY-MM-DD'), TO_CHAR(sentence_expires, 'YYYY-MM-DD'), prison_term_day, ransome, associates, degree_of_crime, degree_of_punishment, notes, arrest_site from test_lta_main where id= %s limit 1;"
+        query = "SELECT  volume, id, name, sex, height, build, dentition, special_peculiarities, TO_CHAR(date_of_birth, 'YYYY-MM-DD'), place_of_birth, place_of_residence, residence, religion, childhood_status, marital_status, number_of_children, occupation, occupation_2, occupation_3, military_service, literacy, education, criminal_history, crime, TO_CHAR(sentence_begins, 'YYYY-MM-DD'), TO_CHAR(sentence_expires, 'YYYY-MM-DD'), prison_term_day, ransome, associates, degree_of_crime, degree_of_punishment, notes, arrest_site from lta_main where record_session= %s ;"
         cur.execute(query, (val,))
         row_num = cur.fetchone()
        
@@ -77,12 +77,13 @@ def edit_one_record(val):
 
 
 def update_one_record(*args):
-        print('the arg:{}'.format(args[0]))
+        
         conn = get_dt_db().getconn()
         cur = conn.cursor()
-        query = "UPDATE test_lta_main set  volume, id, name, sex, height, build, dentition, special_peculiarities, date_of_birth, place_of_birth, place_of_residence, residence, religion, childhood_status, marital_status, number_of_children, occupation, occupation_2, occupation_3, military_service, literacy, education, criminal_history, crime, sentence_begins, sentence_expires, prison_term_day, ransome, associates, degree_of_crime, degree_of_punishment, notes, arrest_site VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) where id = %s;"
-        cur.execute(query, args[0])
-        update_row = cur.fetchall()
+        query = "UPDATE lta_main set  (volume, id, name, sex, height, build, dentition, special_peculiarities, date_of_birth, place_of_birth, place_of_residence, residence, religion, childhood_status, marital_status, number_of_children, occupation, occupation_2, occupation_3, military_service, literacy, education, criminal_history, crime, sentence_begins, sentence_expires, prison_term_day, ransome, associates, degree_of_crime, degree_of_punishment, notes, arrest_site) = (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) where record_session = %s;"
+        cur.execute(query, args[-1])
+        conn.commit()
+        
 
 
 
