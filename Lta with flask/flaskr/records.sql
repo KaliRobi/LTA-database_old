@@ -1,9 +1,9 @@
-CREATE TABLE IF NOT EXISTS sec_lta_main (
+CREATE TABLE IF NOT EXISTS lta_main (
             volume INTEGER NOT NULL,
-            id VARCHAR(15) NOT NULL, 
-            name_with_aliases TEXT,
+            id VARCHAR(15) PRIMARY KEY NOT NULL, 
+            name TEXT,
             sex VARCHAR(1), 
-            height_cm INTEGER, 
+            height INTEGER, 
             build VARCHAR(3), 
             dentition VARCHAR(1), 
             special_peculiarities TEXT, 
@@ -23,14 +23,16 @@ CREATE TABLE IF NOT EXISTS sec_lta_main (
             education VARCHAR(50), 
             criminal_history VARCHAR(50), 
             crime VARCHAR(50), 
-            crime_sentence_begins DATE, 
+            sentence_begins DATE, 
             sentence_expires DATE, 
             prison_term_day INTEGER, 
             ransome INTEGER, 
             associates VARCHAR(50), 
-            degree_of_the_crime VARCHAR(50), 
-            degree_of_the_punishment VARCHAR(50), 
-            notes VARCHAR(150),
-            arrest_site VARCHAR(50) 
-            username VARCHAR(30)
+            degree_of_crime VARCHAR(50), 
+            degree_of_punishment VARCHAR(50), 
+            notes VARCHAR(300),
+            arrest_site VARCHAR(50), 
+            username VARCHAR(30) Not Null,
+            record_session SERIAL NOT NULL,
+            created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
         );
