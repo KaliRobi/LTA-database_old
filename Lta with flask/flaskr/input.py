@@ -18,40 +18,40 @@ input_from_form = {'volume': '', 'id': '', 'name': '', 'sex': '', 'height': '', 
 def main_input():
     row_counter()
     
-    class Record_input(Form):
-        volume = StringField([validators.Regexp('\b\d{1,3}\b|^Null$', message='Allowed: max 3 digits or Null.' )])
-        id  = StringField([validators.Regexp('\b\d{4}-\d{0,8}\b|^Null$', message='Year and serial number on the left upper corner of the record.' )])
-        names = StringField([validators.Regexp('\w+|^Null')])
-        sex = StringField([validators.AnyOf(['f','n','Null'], message='Please enter n or f.' )])
-        height = StringField([validators.NumberRange(min='0', max='200', message="This range expected to be between 100 and 200." )]) 
-        build = StringField([validators.Regexp('\b\D{1,3}\b|^Null$', message='Please enter the correct format')])
-        dentition = StringField([validators.AnyOf(['é', 'h', 'Null'], message='Please enter é or h.')])
-        peculiarities = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
-        birthdate = StringField([validators.Regexp("\d{4}-\d{2}-\d{2}|^Null$", message="Entered wrong data format please try (yyyy-mm-ddd) or Null" )])
-        birthplace = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
-        place_of_residence = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
-        residence = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
-        religion = StringField([validators.AnyOf(['b','e','fn','gk','i','lu','r','rk','u', 'Null'], message='If this field is empty on the record enter Null')])
-        childhood = StringField([validators.AnyOf(['t','tt','Null'], message='Enter t, tt or Null according to the documentation')])
-        marital_status = StringField([validators.AnyOf(['e','eá','evh','h','hké','hvh','ö','vh','vhö', 'Null'], message= 'Enter the valid value, if not sure, check the documentation')])
-        children = StringField([validators.NumberRange(min='0', max=20, message='This field expected to be between 0 and 20.')])
-        occupation = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
-        occupation_2 = StringField([validators.InputRequired(message='Look it up or just enter Null')])
-        occupation_3 = StringField([validators.InputRequired(message='Look it up or just enter Null')])
-        military_service = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
-        literacy = StringField([validators.AnyOf(['io', 'i', 'nt', 'k', 'o', 'Null'], message="io,i,nt,k,o or Null, if not sure please lookp up the documentation" )])
-        eduction = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
-        criminal_history = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
-        crime = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
-        sentence_begins = StringField([validators.Regexp("\d{4}-\d{2}-\d{2}|^Null$", message="Entered wrong data format please try (yyyy-mm-ddd) or Null" )])
-        sentence_expires = StringField([validators.Regexp("\d{4}-\d{2}-\d{2}|^Null$", message="Entered wrong data format please try (yyyy-mm-ddd) or Null" )])
-        prison_term_day = StringField([validators.Regexp('\b\d{4}\b|^Null$', message='The difference between the two previous dates, in days. 1 month = 30 days.')])
-        ransome = StringField([validators.Regexp('\b\d{4}\b|^Null$', message='The ransome in pengo.')])
-        associates = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
-        degree_of_crime = StringField([validators.AnyOF(['b','k', 'v'], message='b, k, v if not sure look up the documentation')])
-        degree_of_punishment = StringField([validators.AnyOF(['b','e','f','fe','szd'], message='b, e,f,fe,szd if not sure look up the documentation')])
-        notes = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
-        arrest_site = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
+    # class Record_input(Form):
+    #     volume = StringField([validators.Regexp('\b\d{1,3}\b|^Null$', message='Allowed: max 3 digits or Null.' )])
+    #     id  = StringField([validators.Regexp('\b\d{4}-\d{0,8}\b|^Null$', message='Year and serial number on the left upper corner of the record.' )])
+    #     names = StringField([validators.Regexp('\w+|^Null')])
+    #     sex = StringField([validators.AnyOf(['f','n','Null'], message='Please enter n or f.' )])
+    #     height = StringField([validators.NumberRange(min='0', max='200', message="This range expected to be between 100 and 200." )]) 
+    #     build = StringField([validators.Regexp('\b\D{1,3}\b|^Null$', message='Please enter the correct format')])
+    #     dentition = StringField([validators.AnyOf(['é', 'h', 'Null'], message='Please enter é or h.')])
+    #     peculiarities = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
+    #     birthdate = StringField([validators.Regexp("\d{4}-\d{2}-\d{2}|^Null$", message="Entered wrong data format please try (yyyy-mm-ddd) or Null" )])
+    #     birthplace = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
+    #     place_of_residence = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
+    #     residence = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
+    #     religion = StringField([validators.AnyOf(['b','e','fn','gk','i','lu','r','rk','u', 'Null'], message='If this field is empty on the record enter Null')])
+    #     childhood = StringField([validators.AnyOf(['t','tt','Null'], message='Enter t, tt or Null according to the documentation')])
+    #     marital_status = StringField([validators.AnyOf(['e','eá','evh','h','hké','hvh','ö','vh','vhö', 'Null'], message= 'Enter the valid value, if not sure, check the documentation')])
+    #     children = StringField([validators.NumberRange(min='0', max=20, message='This field expected to be between 0 and 20.')])
+    #     occupation = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
+    #     occupation_2 = StringField([validators.InputRequired(message='Look it up or just enter Null')])
+    #     occupation_3 = StringField([validators.InputRequired(message='Look it up or just enter Null')])
+    #     military_service = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
+    #     literacy = StringField([validators.AnyOf(['io', 'i', 'nt', 'k', 'o', 'Null'], message="io,i,nt,k,o or Null, if not sure please lookp up the documentation" )])
+    #     eduction = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
+    #     criminal_history = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
+    #     crime = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
+    #     sentence_begins = StringField([validators.Regexp("\d{4}-\d{2}-\d{2}|^Null$", message="Entered wrong data format please try (yyyy-mm-ddd) or Null" )])
+    #     sentence_expires = StringField([validators.Regexp("\d{4}-\d{2}-\d{2}|^Null$", message="Entered wrong data format please try (yyyy-mm-ddd) or Null" )])
+    #     prison_term_day = StringField([validators.Regexp('\b\d{4}\b|^Null$', message='The difference between the two previous dates, in days. 1 month = 30 days.')])
+    #     ransome = StringField([validators.Regexp('\b\d{4}\b|^Null$', message='The ransome in pengo.')])
+    #     associates = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
+    #     degree_of_crime = StringField([validators.AnyOF(['b','k', 'v'], message='b, k, v if not sure look up the documentation')])
+    #     degree_of_punishment = StringField([validators.AnyOF(['b','e','f','fe','szd'], message='b, e,f,fe,szd if not sure look up the documentation')])
+    #     notes = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
+    #     arrest_site = StringField([validators.InputRequired(message='If this field is empty on the record enter Null')])
         
 
 
@@ -550,6 +550,7 @@ def main_input():
         
         conn = get_dt_db().getconn()
         with conn.cursor() as cursor:
+            username = session['current_user']
             dbquery = current_app.open_resource('insert_input.sql').read()
             cursor.execute(dbquery, (
             new_record.volume,
@@ -637,6 +638,8 @@ def myrecords():
         degree_of_punishment = [val[30] for val in records]
         notes = [val[31] for val in records]
         arrest_site = [val[32] for val in records]
+        record_session = [val[33] for val in records]
+        session['record_session'] = record_session
         
         #SESSION the jinja loop needs to be set for record_session instead of id
 
@@ -645,12 +648,11 @@ def myrecords():
     if request.method == "POST":
 #MY RECORD MY RECORDSMY RECORD MY RECORDSMY RECORD MY RECORDSMY RECORD MY RECORDSMY RECORD MY RECORDSMY RECORD MY RECORDSMY RECORD MY RECORDSMY RECORD MY RECORDSMY RECORD MY RECORDSMY RECORD MY RECORDSMY 
 
-            id_for_edit = request.form.get('edit_record')
-            session['record'] = id_for_edit
+            
 
             # the value which the query bases on will be the record_session session['record'] = request.form.get('edit record )
-    
-            record_for_edit = edit_one_record(id_for_edit)
+            print(session['record_session'][0])
+            record_for_edit = edit_one_record(session['record_session'][0])
             
     
             volume = record_for_edit[0]
@@ -707,7 +709,7 @@ def edit_record():
                 
 #EDIT RECORS EDIT RECORDS  EDIT RECORS EDIT RECORDS  EDIT RECORS EDIT RECORDS  EDIT RECORS EDIT RECORDS  EDIT RECORS EDIT RECORDS  EDIT RECORS EDIT RECORDS  EDIT RECORS EDIT RECORDS  EDIT RECORS EDIT RECORDS 
 
-                record_for_edit = edit_one_record(session['record'])
+                record_for_edit = edit_one_record(session['record_session'][0])
                 
         
                 volume = record_for_edit[0]
@@ -784,8 +786,9 @@ def edit_record():
         modified_degree_of_punishment = request.form.get('edit_degree_of_punishment')
         modified_notes = request.form.get('edit_notes')
         modified_arrest_site = request.form.get('edit_arrest_site')
+        session_record = session['record_session'][0]
 #EDIT RECORS EDIT RECORDS  EDIT RECORS EDIT RECORDS  EDIT RECORS EDIT RECORDS  EDIT RECORS EDIT RECORDS  EDIT RECORS EDIT RECORDS  EDIT RECORS EDIT RECORDS  EDIT RECORS EDIT RECORDS  EDIT RECORS EDIT RECORDS  
-        modified_record = (modified_volume, modified_id, modified_names, modified_sex, modified_height, modified_build, modified_dentition, modified_peculiarities, modified_birthdate, modified_birthplace, modified_place_of_residence, modified_residence, modified_religion, modified_childhood, modified_marital_status, modified_children, modified_occupation, modified_occupation_2, modified_occupation_3,  modified_military_service, modified_literacy, modified_eduction, modified_criminal_history, modified_crime, modified_sentence_begins, modified_sentence_expires, modified_prison_term_day, modified_ransome, modified_associates, modified_degree_of_crime, modified_degree_of_punishment, modified_notes, modified_arrest_site)
+        modified_record = [modified_volume, modified_id, modified_names, modified_sex, modified_height, modified_build, modified_dentition, modified_peculiarities, modified_birthdate, modified_birthplace, modified_place_of_residence, modified_residence, modified_religion, modified_childhood, modified_marital_status, modified_children, modified_occupation, modified_occupation_2, modified_occupation_3,  modified_military_service, modified_literacy, modified_eduction, modified_criminal_history, modified_crime, modified_sentence_begins, modified_sentence_expires, modified_prison_term_day, modified_ransome, modified_associates, modified_degree_of_crime, modified_degree_of_punishment, modified_notes, modified_arrest_site, session_record]
         print('hettttttttttttttttttttttttttt')
         for i in range(0,len(modified_record)):
             
@@ -795,9 +798,8 @@ def edit_record():
                 flash(error)
         
         
-        modify_query = list(modified_record)
-        modify_query.append(modified_id )
-        update_one_record(tuple(modify_query))
+        
+        update_one_record(tuple(modified_record))
         
         
         return redirect(url_for('dashboard.myrecords'))
