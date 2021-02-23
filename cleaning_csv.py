@@ -50,9 +50,22 @@ with open('lta.csv') as f:
                         t = f"{t[-1]}-{t[1]}-{t[0]}"
                         new_c.append(t)
                     
-                    print(new_c)
-                elif re.match(r'\d\d\d\d[/|.|-]\w{1,2}[/|-|.]\w{1,2}', case[i]):
-                    print(case[i])
+                    # looking for the not complete dates in the databses. they are marked with year.hh.nn (Hónap=month, Nap=day )
+                elif re.match(r'\d{4}\.(\d{2}|[a-zA-Z]{2})\.([a-zA-Z]{2})', case[i]):
+                    date_mod = case[i].split('.')                    
+                    for u in range(len(date_mod)):
+                        #looking for the ones where the month is there
+                        if re.match(r'.\d{2}.',  date_mod[u]):
+                            new_date = f'{date_mod[0]}-{date_mod[1]}-01'                            
+                            case[-2] = f"{case[-2]}, Date modified from {case[i]} to {new_date} 0001." #0001 = dtae modified by us, code for easier auto filtering
+                            #looking for the month if it is still not valid
+                            if re.match(r'[a-z]',  date_mod[1]):
+                                date_mod = new_date.split('-')                                                                    
+                                new_date = f'{date_mod[0]}-01-{date_mod[2]}'
+                                case[-2] = f"{case[-2]}, Date modified from {case[i]} to {new_date} 0001." #0001 = dtae modified by us, code for easier auto filtering
+                                nums.append(new_date) 
+                            else:
+                                nums.append(new_date) 
                 
 
                 else:
