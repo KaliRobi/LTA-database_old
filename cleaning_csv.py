@@ -1,12 +1,15 @@
-# this file attempts to serialize the data to be the best fit for the postgres when I convert the excel/csv to its final format
+# this file attempted to serialize the data to be the best fit for the postgres when I convert the excel to its final format
 
 import re
 from csv import reader
+import psycopg2
+from psycopg2 import pool
 
 
 with open('lta.csv') as f:
     cases = reader(f)
-    new_c = []
+    
+    nums = []
     for case in cases:      
         #cleaning up the variaty of the not available formats
         case = ['Null' if atr == ''  else atr for atr in case ]
@@ -14,8 +17,10 @@ with open('lta.csv') as f:
         case = ['Null' if atr == 'NA' else atr for atr in case]
         case = ['Null' if atr == 'N.A' else atr for atr in case]
         case = ['Null' if atr == 'n.a' else atr for atr in case]
-        
+        #print(case)
+        new_c = []
         for i in range(len(case)):
+
                         
                 #cleaning up the various kind of date formats
                 if re.match(r'\d\d\d\d[.|/]\d{1,2}[.|/]\d{1,2}', case[i]):
@@ -50,7 +55,7 @@ with open('lta.csv') as f:
                         t = f"{t[-1]}-{t[1]}-{t[0]}"
                         new_c.append(t)
                     
-                    # looking for the not complete dates in the databses. they are marked with year.hh.nn (Hónap=month, Nap=day )
+                   # looking for the not complete dates in the databses. they are marked with year.hh.nn (Hónap=month, Nap=day )
                 elif re.match(r'\d{4}\.(\d{2}|[a-zA-Z]{2})\.([a-zA-Z]{2})', case[i]):
                     date_mod = case[i].split('.')                    
                     for u in range(len(date_mod)):
@@ -63,23 +68,54 @@ with open('lta.csv') as f:
                                 date_mod = new_date.split('-')                                                                    
                                 new_date = f'{date_mod[0]}-01-{date_mod[2]}'
                                 case[-2] = f"{case[-2]}, Date modified from {case[i]} to {new_date} 0001." #0001 = dtae modified by us, code for easier auto filtering
-                                nums.append(new_date) 
-                            else:
-                                nums.append(new_date) 
-                
-
-                else:
-                    t= case[i]
-                    new_c.append(t)
+                                new_c.append(new_date)
                                 
-                    ind = i
-                print(new_c)
-                    #replace the word characters with the 01-01 and append the 'note' = 'date is nut sure' 
-
+                            else:
+                                new_c.append(new_date)
+                        
                 
-                # else:
-                    # print(c[i])
+                        
+                                
+                else:
+                    new_c.append(case[i]) 
+                # if case[8] == 'Null':
+                #     case[8] = None
+                #     print(case[8])
 
+        
+        print(new_c)
+        for i in range(len(new_c)):
+            if new_c[4] == 'Null':
+                    new_c[4] = None
+            elif new_c[8] == 'Null':
+                    new_c[8] = None
+            elif new_c[15] == 'Null':
+                    new_c[15] = None
+            elif new_c[24] == 'Null':
+                    new_c[24] = None
+            elif new_c[25] == 'Null':
+                    new_c[25] = None
+            elif new_c[27] == 'Null':
+                    new_c[27] = None
+         # float values in the ransom filed...
+        # if re.match(r'.\..', new_c[27]):
+        #     new_c.split('.')
+        
+                    
+                 
+                            
+               
 
-
-        #data colums also need to receive '' instead of Null so they need to be replaced again to get the null value of the DATE fieled
+        #print(new_c) 
+        data_pool = psycopg2.pool.SimpleConnectionPool(1,20,
+                                    dbname='lta_data',
+                                    host='localhost',
+                                    user = 'teszt_user',
+                                    password = '123456')
+        conn = data_pool.getconn()        
+        with conn.cursor() as cursor:
+            dbquery = "INSERT INTO teszt_lta (volume, id, name, sex, height, build, dentition, special_peculiarities, date_of_birth, place_of_birth, place_of_residence, residence, religion, childhood_status, marital_status, number_of_children, occupation, occupation_2, occupation_3, military_service, literacy, education, criminal_history, crime, sentence_begins, sentence_expires, prison_term_day, ransome, associates, degree_of_crime, degree_of_punishment, notes, arrest_site)  VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"
+            cursor.execute(dbquery, tuple(new_c))
+        conn.commit()
+        print('inserted row')
+                        
