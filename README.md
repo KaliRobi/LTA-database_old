@@ -23,6 +23,8 @@ Speaking of convenient... the html Ui pages at the moment are the bare minimum w
 2.5 CRUD operations are working.
     WTforms validations are under progress
     Database(excel) serialization and migration to postgressql is under progress.
+    This part is mostly cleared already but the database wont be migrated behind the database management app until mid march. 
+    Until then I still have to serialize a couple of columns so the statistic template will be able to work with it.
     Some additional features: 
     operation recording table
     non-data based entry id and timestamp columns are needed in the main db.
